@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+html {
+    /*background-color: #111417;*/
+}
+
+h1, h2, h3 {
+    font-family: "Oswald", "Roboto Condensed", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+}

@@ -24,7 +24,7 @@ function WordCloud({ words, color }: WordCloudProps) {
         minSize={12}
         maxSize={32}
         tags={tags}
-        renderer={(tag, size) => (
+        renderer={(tag: any, size: any) => (
           <span
             key={tag.value}
             style={{

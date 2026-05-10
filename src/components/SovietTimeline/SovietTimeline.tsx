@@ -1,5 +1,3 @@
-import React from "react";
-
 import WordCloud from "./WordCloud.tsx";
 import period_1_1 from '../../assets/placats/period_1/unnamed.png'
 import period_1_2 from '../../assets/placats/period_1/unnamed2.png'
@@ -206,7 +204,7 @@ function TimelineRow({ item }: {item: any}) {
   return (
     <section
       className={`row ${isRight ? "right" : "left"}`}
-      style={{ top: `${item.top}%`, "--accent": item.color, "--glow": item.glow }}
+      style={{ top: `${item.top}%`, "--accent": item.color, "--glow": item.glow } as React.CSSProperties & Record<'--accent', string>}
     >
       <div className="visualBlock">
         <div className="halo" />

@@ -18,6 +18,8 @@ import period_4_3 from '../../assets/placats/period_4/unna3.png'
 import period_5_1 from '../../assets/placats/period_5/unn1.png'
 import period_5_2 from '../../assets/placats/period_5/unn2.png'
 import period_5_3 from '../../assets/placats/period_5/unn3.png'
+import {useState} from "react";
+import Modal from "../Modal/Modal.tsx";
 
 const periods = [
   {
@@ -25,13 +27,16 @@ const periods = [
     side: "right",
     year: "1917-1922",
     title: "революция\nвойна\nтоварищ",
-    subtitle: "Революция.\nГражданская война.\nВоенный коммунизм.",
+    subtitle: "",
     color: "#ff4050",
     glow: "rgba(255, 28, 55, 0.42)",
     top: 12,
     posters: ["Да здравствует", "Знание — сила", "Запорожец"],
     images: [period_1_1, period_1_2, period_1_3],
     button: "подробнее",
+    history: 'Период Октябрьской революции, Гражданской войны и политики «военного коммунизма». Большевики установили однопартийную диктатуру. Страна была расколота на множество фронтов, в экономике царили разруха и карточная система. К концу периода власть перешла к НЭПу.',
+    conclusion: 'Лексика классовой борьбы («красный», «рабочий», «крестьянин») отражает ставку большевиков на рабочих и крестьян как опору власти в условиях войны, а 73,5% красного и тёмные фиолетовые оттенки передают суровую эстетику военного времени.'
+    ,
     words: [
       "красная армия",
       "новый человек",
@@ -53,13 +58,16 @@ const periods = [
     side: "left",
     year: "1923-1929",
     title: "работа\nстроительство\nколхоз",
-    subtitle: "Новая экономическая\nполитика НЭП.\nКультура и быт.\nИндустриализация.",
+    subtitle: "",
     color: "#368eff",
     glow: "rgba(30, 105, 255, 0.36)",
     top: 35,
     posters: ["Читай книги", "Всем, всем, всем", "Актив"],
     images: [period_2_1, period_2_2, period_2_3],
     button: "подробнее",
+    history: 'Эпоха НЭПа с временным допущением рыночных механизмов. После смерти Ленина (1924) развернулась внутрипартийная борьба, завершившаяся разгромом оппозиций и концентрацией власти у Сталина. Время относительной стабилизации и культурного плюрализма.',
+    conclusion: 'Слово «режиссёр» стало уникальным маркером культурного подъёма и расцвета театра и кино в годы НЭПа, а возросшая доля синего (5,1%) связана с влиянием конструктивизма и художественного плюрализма 1920-х.'
+    ,
     words: [
       "новая экономическая",
       "политика",
@@ -84,13 +92,16 @@ const periods = [
     side: "right",
     year: "1930-1939",
     title: "пятилетка\nколхоз\nсоциализм",
-    subtitle: "Индустриализация.\nКоллективизация.\nФормирование\nнового человека.",
+    subtitle: "",
     color: "#ff5353",
     glow: "rgba(255, 40, 40, 0.38)",
     images: [period_3_1, period_3_2, period_3_3],
     top: 62,
     posters: ["Больше металла", "Выполним пятилетку", "Колхозники"],
     button: "подробнее",
+    history: 'Период форсированной индустриализации, коллективизации и массовых репрессий (Большой террор 1937–1938). Государство стало предельно централизованным, культ личности Сталина оформился окончательно.',
+    conclusion: 'Выход на первый план слов «Сталин», «СССР» и жёстко нормированная палитра (78% красного) отражают завершение формирования культа личности и утверждение единого идеологического канона в эпоху индустриализации.'
+    ,
     words: [
       "пятилетка",
       "план",
@@ -111,15 +122,18 @@ const periods = [
   {
     id: 4,
     side: "left",
-    year: "1941-1945",
+    year: "1940-1945",
     title: "война\nродина\nфронт",
-    subtitle: "Великая Отечественная\nвойна. Победа.",
+    subtitle: "",
     color: "#6fed58",
     glow: "rgba(56, 220, 60, 0.36)",
     top: 86,
     images: [period_4_1, period_4_2, period_4_3],
     posters: ["Родина-мать зовёт", "Всё для фронта", "Дойдем до Берлина"],
     button: "подробнее",
+    history: 'Великая Отечественная война (1941–1945) стала тяжелейшим испытанием и завершилась победой СССР. Страна понесла колоссальные людские и материальные потери (около 27 млн погибших) и превратилась в сверхдержаву.',
+    conclusion: 'Доминирование слов «враг» и «фашистский» прямо связано с мобилизацией на борьбу с нацистской Германией, а падение красного до 70,6% и рост зеленого и голубого — с необходимостью реалистичного изображения техники и неба.'
+    ,
     words: [
       "великая отечественная",
       "всё для фронта",
@@ -142,15 +156,18 @@ const periods = [
   {
     id: 5,
     side: "right",
-    year: "1945-1953",
+    year: "1946-1953",
     title: "мир\nтруд\nпобеда",
-    subtitle: "Послевоенное\nвосстановление.\nМирный труд.\nУверенность в будущем.",
+    subtitle: "",
     color: "#ffa51f",
     glow: "rgba(255, 170, 25, 0.34)",
     top: 110,
     images: [period_5_1, period_5_2, period_5_3],
     posters: ["Слава труду", "Мир! Труд! Май!", "Наше дело правое"],
     button: "подробнее",
+    history: 'Послевоенное восстановление при приоритете тяжёлой промышленности и низком уровне жизни. Начало Холодной войны и новая волна репрессий. Смерть Сталина в 1953 году завершила эпоху единоличной диктатуры.',
+    conclusion: 'Слово «мир» выходит на первое место как реакция на потери войны и запрос на восстановление, а рекордный красный (82,2%) и резкий скачок жёлтого совмещают усиление идеологического контроля с визуальным маркером урожая и «золотого века».'
+    ,
     words: [
       "мирный труд",
       "восстановление хозяйства",
@@ -171,16 +188,17 @@ const periods = [
   },
 ];
 
-function Poster({ url }: any) {
+function Poster({url}: any) {
   return (
     <div className="poster">
-      <img src={url} alt="" />
-      <div className="posterVeil" />
+      <img src={url} alt=""/>
+      <div className="posterVeil"/>
     </div>
   );
 }
 
-function TimelineRow({ item }: {item: any}) {
+function TimelineRow({item}: { item: any }) {
+  const [modal, setModal] = useState(false);
   const isRight = item.side === "right";
   const id = item?.id;
 
@@ -201,41 +219,48 @@ function TimelineRow({ item }: {item: any}) {
     }
   }
 
-  return (
-    <section
-      className={`row ${isRight ? "right" : "left"}`}
-      style={{ top: `${item.top}%`, "--accent": item.color, "--glow": item.glow } as React.CSSProperties & Record<'--accent', string>}
-    >
-      <div className="visualBlock">
-        <div className="halo" />
-        <div className="posters">
-          {item?.images && item?.images.map((img: any, index: any) => (
-            <Poster key={img} index={index + item.id} url={img}  />
+  return (<>
+      <Modal setOpen={setModal} open={modal} title={item.year} posterUrls={item.images} historyText={item.history} conclusionText={item.conclusion} periodNumber={item.id}/>
+      <section
+        className={`row ${isRight ? "right" : "left"}`}
+        style={{
+          top: `${item.top}%`,
+          "--accent": item.color,
+          "--glow": item.glow
+        } as React.CSSProperties & Record<'--accent', string>}
+      >
+        <div className="visualBlock">
+          <div className="halo"/>
+          <div className="posters">
+            {item?.images && item?.images.map((img: any, index: any) => (
+              <Poster key={img} index={index + item.id} url={img}/>
+            ))}
+          </div>
+          <button className="more" onClick={() => setModal(true)}>{item.button}</button>
+        </div>
+
+        <div className="cloudBlock" style={{marginLeft: isRight ? 105 : -240}}>
+          <WordCloud words={item.words} color={item.color}/>
+        </div>
+
+        <div className="yearBlock">
+          <div className="dot" style={{left: getLeftDot()}}/>
+          <div style={{marginLeft: isRight ? 10 : 20}}>
+            <div className="year" style={{width: 100}}>{item.year}</div>
+            <p style={{fontSize: 12, lineHeight: 1.4, fontWeight: 400}}>{item.subtitle}</p>
+
+          </div>
+
+        </div>
+
+        <div className="titleBlock" style={{marginLeft: isRight ? 120 : -120}}>
+          {item.title.split("\n").map((line: any) => (
+            <div key={line}>{line}</div>
           ))}
         </div>
-        <button className="more">{item.button}</button>
-      </div>
+      </section>
+    </>
 
-      <div className="cloudBlock" style={{marginLeft: isRight ? 105 : -240}}>
-        <WordCloud words={item.words} color={item.color} />
-      </div>
-
-      <div className="yearBlock">
-        <div className="dot" style={{left: getLeftDot()}} />
-        <div style={{marginLeft: isRight ? 20 : -20}}>
-          <div className="year" style={{width: 100}}>{item.year}</div>
-          <p style={{fontSize: 12, lineHeight: 1.4, fontWeight: 400}}>{item.subtitle}</p>
-
-        </div>
-
-      </div>
-
-      <div className="titleBlock" style={{marginLeft: isRight ? 120 : -120}} >
-        {item.title.split("\n").map((line: any) => (
-          <div key={line}>{line}</div>
-        ))}
-      </div>
-    </section>
   );
 }
 
@@ -246,40 +271,45 @@ export default function SovietTimeline() {
         <svg className="curve" viewBox="0 0 100 900" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#ff2b43" />
-              <stop offset="20%" stopColor="#ff7a8b" />
-              <stop offset="42%" stopColor="#b7c4ff" />
-              <stop offset="62%" stopColor="#ff5b5b" />
-              <stop offset="78%" stopColor="#6ff75c" />
-              <stop offset="100%" stopColor="#ffb21b" />
+              <stop offset="0%" stopColor="#ff2b43"/>
+              <stop offset="20%" stopColor="#ff7a8b"/>
+              <stop offset="42%" stopColor="#b7c4ff"/>
+              <stop offset="62%" stopColor="#ff5b5b"/>
+              <stop offset="78%" stopColor="#6ff75c"/>
+              <stop offset="100%" stopColor="#ffb21b"/>
             </linearGradient>
             <filter id="lineGlow" x="-120%" y="-10%" width="340%" height="120%">
-              <feGaussianBlur stdDeviation="3.2" result="blur" />
+              <feGaussianBlur stdDeviation="3.2" result="blur"/>
               <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
+            <clipPath id="cutTopLine">
+              <rect x="0" y="132" width="100" height="920"/>
+            </clipPath>
           </defs>
-          <path
-            d="M50 0 C16 84 44 139 55 194 C71 274 17 342 39 423 C60 505 74 549 45 641 C20 719 67 781 53 850 C45 909 50 957 50 1000"
-            fill="none"
-            stroke="url(#lineGradient)"
-            strokeWidth="3.4"
-            strokeLinecap="round"
-            filter="url(#lineGlow)"
-          />
-          <path
-            d="M50 0 C16 84 44 139 55 194 C71 274 17 342 39 423 C60 505 74 549 45 641 C20 719 67 781 53 850 C45 909 50 957 50 1000"
-            fill="none"
-            stroke="rgba(255,255,255,.86)"
-            strokeWidth="1.15"
-            strokeLinecap="round"
-          />
+          <g clipPath="url(#cutTopLine)">
+            <path
+              d="M50 0 C16 84 44 139 55 194 C71 274 17 342 39 423 C60 505 74 549 45 641 C20 719 67 781 53 850 C45 909 50 957 50 1000"
+              fill="none"
+              stroke="url(#lineGradient)"
+              strokeWidth="3.4"
+              strokeLinecap="round"
+              filter="url(#lineGlow)"
+            />
+            <path
+              d="M50 0 C16 84 44 139 55 194 C71 274 17 342 39 423 C60 505 74 549 45 641 C20 719 67 781 53 850 C45 909 50 957 50 1000"
+              fill="none"
+              stroke="rgba(255,255,255,.86)"
+              strokeWidth="1.15"
+              strokeLinecap="round"
+            />
+          </g>
         </svg>
 
         {periods.map((item) => (
-          <TimelineRow key={item.id} item={item} />
+          <TimelineRow key={item.id} item={item}/>
         ))}
 
         {/*<footer className="legend">*/}
@@ -436,7 +466,6 @@ export default function SovietTimeline() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: sepia(.72) saturate(1.35) contrast(1.1) brightness(.86);
         }
 
         .posterVeil {
@@ -461,18 +490,22 @@ export default function SovietTimeline() {
         }
 
         .more {
-          height: 20px;
           min-width: 58px;
-          padding: 0 12px;
+          padding: 6px 12px;
           border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
-          border-radius: 2px;
+          border-radius: 6px;
           background: rgba(20, 20, 25, .55);
           color: color-mix(in srgb, var(--accent) 80%, white 20%);
           font-family: inherit;
-          font-size: 10px;
+          font-size: 14px;
           line-height: 18px;
           pointer-events: auto;
           box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 30%, transparent);
+          cursor: pointer;
+        }
+        
+        .more:hover {
+          transform: scale(1.2);
         }
 
         .cloudBlock {
